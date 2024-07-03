@@ -16,8 +16,8 @@ Before you begin, ensure you have the following installed on your host machine:
    Clone this repository to your local machine:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone "https://github.com/Godfrey22152/Train-Ticket-Reservation-System-Application.git"
+   cd Self-Hosted-VM
    ```
 
 2. **Start the Vagrant VM**

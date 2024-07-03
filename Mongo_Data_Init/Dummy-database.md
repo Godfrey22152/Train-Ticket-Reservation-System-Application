@@ -76,6 +76,7 @@ db.history.insertMany([
   { transid: 'BBC375-NSDF-4675', mailid: 'godfrey@demo.com', tr_no: '10009', date: '2024-01-12T00:00:00Z', from_stn: 'KADUNA', to_stn: 'PORT HARCOURT TERMINUS STATION', seats: NumberInt(49), amount: 10550.00 },
   { transid: 'BBC373-NSDF-4674', mailid: 'godfrey@demo.com', tr_no: '10006', date: '2024-07-22T00:00:00Z', from_stn: 'ABA', to_stn: 'ENUGU TERMINUS', seats: NumberInt(3), amount: 1652.25 }
 ]);
+```
 
 ### Step 4: Connect to MongoDB Atlas and Execute the Script
 
@@ -89,6 +90,7 @@ db.history.insertMany([
 ```bash
 mongo "mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/"
 
+```
 #### 2. Run the Script:
 
 1. Open your terminal or command prompt.
@@ -97,6 +99,7 @@ mongo "mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/"
 
 ```bash
 mongo "mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/" mongodb_data.js
+```
 
 ### **Verification**
 To verify that the data has been inserted correctly, you can use the MongoDB Atlas UI or run the following commands in the MongoDB Shell:
@@ -108,7 +111,7 @@ db.customer.find().pretty();
 db.admin.find().pretty();
 db.train.find().pretty();
 db.history.find().pretty();
-
+```
 This should display the inserted documents for each collection.
 
 ### **Conclusion**
