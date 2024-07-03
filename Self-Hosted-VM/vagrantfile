@@ -1,0 +1,46 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/bionic64" # Using Ubuntu 18.04 LTS as the base box
+  
+    # Allocate memory
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096" # 4 GB of RAM, adjust as needed
+    end
+
+    # Use port forwarding to access Docker SonarQube from host machine
+    config.vm.network "forwarded_port", guest: 9000, host: 9000
+      
+    # Provisioning script
+    config.vm.provision "shell", inline: <<-SHELL
+      # Update and upgrade the system
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+  
+      # Install Docker
+      sudo apt-get install -y docker.io
+      sudo systemctl start docker
+      sudo systemctl enable docker
+      sudo chmod 666 /var/run/docker.sock
+  
+      # Install Java
+      sudo apt-get install -y openjdk-17-jre-headless
+  
+      # Install Maven
+      sudo apt-get install -y maven
+  
+      # Install Trivy
+      sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+      wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+      echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+      sudo apt-get update -y
+      sudo apt-get install -y trivy
+  
+      # Install SonarQube
+      #Either you install SonarQube using official Documentation guidelines or using running a Docker image.
+      docker run -d --name sonar -p 9000:9000 mc1arke/sonarqube-with-community-branch-plugin
+  
+    SHELL
+  end
+  
