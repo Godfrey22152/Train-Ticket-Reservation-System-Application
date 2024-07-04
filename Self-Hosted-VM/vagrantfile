@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-    config.vm.box = "ubuntu/ubuntu-23.04" # Using Ubuntu 23.04 as the base box
+    config.vm.box = "ubuntu/jammy64" # Using Ubuntu 22.04 as the base box
   
     # Allocate memory
     config.vm.provider "virtualbox" do |vb|
