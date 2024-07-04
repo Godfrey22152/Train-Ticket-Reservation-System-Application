@@ -1,6 +1,11 @@
 # Setting Up a self-hosted Virtual Machine for Azure DevOps Pipeline Agent using Vagrant.
+This vagrantfile serves as a self-host VM for running various tools and services needed in the project's Azure DevOps pipeline.
 
-This Vagrant setup provides an Ubuntu 18.04 LTS virtual machine configured with Docker, Java, Maven, Trivy, and SonarQube. It serves as a self-host VM for running various tools and services needed in the project's Azure DevOps pipeline.
+## **The Vagrantfile is configured to:**
+1. Use the Ubuntu 23.04 base box.
+2. Allocate 4 GB of RAM to the VM.
+3. Forward port 9000 to allow access to SonarQube from the host machine.
+4. Provision the VM with necessary software including Docker, Java, Maven, Trivy, and SonarQube. 
 
 ## Prerequisites
 
@@ -9,9 +14,9 @@ Before you begin, ensure you have the following installed on your host machine:
 - [Vagrant](https://www.vagrantup.com/)
 - [VirtualBox](https://www.virtualbox.org/)
 
-## Getting Started
+## Setup Instructions
 
-1. **Clone the Repository**
+### Step 1: **Clone the Repository**
 
    Clone this repository to your local machine:
 
@@ -20,17 +25,15 @@ Before you begin, ensure you have the following installed on your host machine:
    cd Train-Ticket-Reservation-System-Application/Self-Hosted-VM
    ```
 
-2. **Start the Vagrant VM**
+### Step 2: **Start the Vagrant VM**
 
    Start the Vagrant VM by running:
 
    ```bash
    vagrant up
+
    ```
-
-   This command provisions the VM and installs Docker, Java, Maven, Trivy, and SonarQube.
-
-3. **Accessing SonarQube**
+### Step 3: **Accessing SonarQube**
 
    Once the VM is up and running, you can access SonarQube from your browser at:
 
@@ -42,7 +45,15 @@ Before you begin, ensure you have the following installed on your host machine:
    - Username: admin
    - Password: admin
 
-4. **Stopping the Vagrant VM**
+### Step 4: SSH into the VM
+
+If you need to access the VM via SSH, use the following command:
+
+```sh
+vagrant ssh
+```
+
+### Step 5: **Stop or Destroy the Vagrant VM**
 
    You can stop the Vagrant VM with:
 
@@ -50,6 +61,17 @@ Before you begin, ensure you have the following installed on your host machine:
    vagrant halt
    vagrant destory -f
    ```
+
+## Provisioning Details
+
+The provisioning script performs the following steps:
+
+1. Updates and upgrades the system packages.
+2. Installs Docker and starts the Docker service.
+3. Installs Java (OpenJDK 17).
+4. Installs Maven.
+5. Installs Trivy, a vulnerability scanner for containers.
+6. Runs SonarQube using a Docker container.
 
 ## Customization
 
@@ -79,6 +101,10 @@ vagrant reload --provision
 
 - **Network Issues**: Ensure that port `9000` is accessible on your host machine.
 - **Permissions**: If you encounter permission issues with Docker, ensure your user is added to the Docker group within the VM or adjust permissions as needed in the provisioning script.
+- **Permission Denied (Public Key) Error**: Ensure your SSH keys are properly configured if you encounter permission issues when pushing to a remote Git repository.
+- **Port Forwarding Issues**: Ensure port 9000 is not being used by another application on your host machine.
+
+For additional help, refer to the [Vagrant documentation](https://www.vagrantup.com/docs).
 
 ## License
 
