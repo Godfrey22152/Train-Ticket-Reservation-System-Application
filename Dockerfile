@@ -13,7 +13,7 @@ COPY WebContent /app/WebContent/
 RUN mvn clean package
 
 # Stage 2: Create a new image with Tomcat
-FROM tomcat:9.0.76-jdk17
+FROM tomcat:9.0.93-jdk17
 
 # Remove default webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
