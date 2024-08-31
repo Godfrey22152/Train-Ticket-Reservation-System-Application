@@ -59,6 +59,13 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Ensure the Surefire Plugin is set for running tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -94,16 +101,7 @@
         
         <!-- Other dependencies (if any) -->
     </dependencies>
-    <build>
-        <plugins>
-            <!-- Ensure the Surefire Plugin is set for running tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-        </plugins>
-    </build>    
+      
     <!-- Configuration to Deploy both snapshot and releases to Nexus -->
     <distributionManagement>
         <repository>
