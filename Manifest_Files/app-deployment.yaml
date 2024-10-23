@@ -26,6 +26,8 @@ spec:
       containers:
       - name: trainbook-app
         image: godfrey22152/trainbooking-app:latest
+      imagePullSecrets:
+      - name: regcred  # Secret to pull image from private registry
         ports:
         - containerPort: 8080
         env:
