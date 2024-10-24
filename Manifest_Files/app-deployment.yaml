@@ -25,9 +25,7 @@ spec:
     spec:
       containers:
       - name: trainbook-app
-        image: godfrey22152/trainbooking-app:latest
-      imagePullSecrets:
-      - name: regcred  # Secret to pull image from private registry
+        image: godfrey22152/trainbooking-app:v1
         ports:
         - containerPort: 8080
         env:
@@ -53,6 +51,8 @@ spec:
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 10
+      imagePullSecrets:
+      - name: regcred  # Secret to pull image from private registry
 
 ---
 apiVersion: v1
